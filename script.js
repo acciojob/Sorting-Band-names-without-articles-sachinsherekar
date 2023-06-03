@@ -1,30 +1,37 @@
 //your code here
 //your code here
-function sortBands(bands) {
-  // Get a regular expression that matches any of the specified articles at the beginning of a string
-  const articleRegex = /^(a|an|the)\s/i;
+let bandNames = ['The Rolling Stones', 'Led Zeppelin', 'The Beatles', 'Pink Floyd'];
 
-  // Define a comparison function that ignores articles
-  function compareBands(a, b) {
-    // Remove any articles from the beginning of the two strings
-    const aWithoutArticle = a.replace(articleRegex, '');
-    const bWithoutArticle = b.replace(articleRegex, '');
-    
-    // Compare the modified strings using the default lexicographic comparison
-    return aWithoutArticle.localeCompare(bWithoutArticle);
-  }
-  
-  // Sort the bands using the custom comparison function
-  const sortedBands = bands.sort(compareBands);
-  
-  // Generate an HTML string containing the sorted list of bands
-  const bandList = sortedBands.map(band => `<li>${bands}</li>`).join('');
-  const outputHTML = `<ul id="band">${bandList}</ul>`;
-  
-  return outputHTML;
+// Function to remove articles from a band name
+function removeArticles(name) {
+// Define the list of articles to be removed
+const articles = ['a', 'an', 'the'];
+
+// Split the band name into words
+const words = name.split(' ');
+
+// Filter out the articles from the words array
+const filteredWords = words.filter(word => !articles.includes(word.toLowerCase()));
+
+// Join the filtered words to form the modified band name
+const modifiedName = filteredWords.join(' ');
+
+return modifiedName;
 }
 
-// const bandNames = ['The Beatles', 'Led Zeppelin', 'The Rolling Stones', 'Guns N Roses'];
- const sortedBandsHTML = sortBands(bands);
- console.log(sortedBandsHTML);
-// Output: <ul id="band"><li>Guns N Roses</li><li>The Beatles</li><li>Led Zeppelin</li><li>The Rolling Stones</li></ul>
+// Sort the band names in lexicographic order, excluding articles
+bandNames.sort((a, b) => {
+const nameA = removeArticles(a);
+const nameB = removeArticles(b);
+return nameA.localeCompare(nameB);
+});
+
+// Get the <ul> element by its id
+const bandList = document.getElementById('band');
+
+// Iterate over the sorted band names and create <li> elements
+for (let i = 0; i < bandNames.length; i++) {
+const li = document.createElement('li');
+li.textContent = bandNames[i];
+bandList.appendChild(li);
+}
