@@ -25,6 +25,6 @@ function sortBands(bands) {
 }
 
 // const bandNames = ['The Beatles', 'Led Zeppelin', 'The Rolling Stones', 'Guns N Roses'];
- const sortedBandsHTML = sortBands(bandNames);
+ const sortedBandsHTML = sortBands(bands);
  console.log(sortedBandsHTML);
 // Output: <ul id="band"><li>Guns N Roses</li><li>The Beatles</li><li>Led Zeppelin</li><li>The Rolling Stones</li></ul>
