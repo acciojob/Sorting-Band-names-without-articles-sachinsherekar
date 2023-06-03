@@ -18,7 +18,7 @@ function sortBands(bands) {
   const sortedBands = bands.sort(compareBands);
   
   // Generate an HTML string containing the sorted list of bands
-  const bandList = sortedBands.map(band => `<li>${band}</li>`).join('');
+  const bandList = sortedBands.map(band => `<li>${bands}</li>`).join('');
   const outputHTML = `<ul id="band">${bandList}</ul>`;
   
   return outputHTML;
